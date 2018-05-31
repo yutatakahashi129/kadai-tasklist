@@ -125,4 +125,8 @@ class TasksController extends Controller
 
         return redirect('/');
     }
+    public function sample() {
+  $status = config('status');
+  return view('sample')->with(['status' => $status]);
+}
 }
