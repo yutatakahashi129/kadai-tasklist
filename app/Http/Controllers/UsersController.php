@@ -8,7 +8,9 @@ use App\User;
 
 class UsersController extends Controller
 {
-    public function index()
+    
+    
+     public function index()
     {
         $users = User::paginate(10);
         
@@ -17,7 +19,7 @@ class UsersController extends Controller
         ]);
     }
     
-     public function show($id)
+    public function show($id)
     {
         $user = User::find($id);
 
