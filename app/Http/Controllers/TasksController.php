@@ -42,11 +42,11 @@ class TasksController extends Controller
     public function create()
     {
          $task = new Task;
-        if (\Auth::user()->id === $task->user_id) {
+        if (\Auth::check()&&\Auth::user()->id === $task->user_id) {
         return view('tasks.create', [
             'task' => $task,
         ]);}
-         return redirect('http://rararakadai-tasklist.herokuapp.com/');
+         return redirect('/');
     }
 
     /**
@@ -81,7 +81,7 @@ class TasksController extends Controller
         
         $task = Task::find($id);
 
-        if (\Auth::user()->id === $task->user_id){
+        if (\Auth::check()&&\Auth::user()->id === $task->user_id){
 
         return view('tasks.show', [
             'task' => $task,
@@ -99,7 +99,7 @@ class TasksController extends Controller
     {
          $task = Task::find($id);
          
-          if (\Auth::user()->id === $task->user_id) {
+          if (\Auth::check()&&\Auth::user()->id === $task->user_id) {
             return view('tasks.edit', [
             'task' => $task,
         ]);
@@ -138,7 +138,7 @@ class TasksController extends Controller
     public function destroy($id)
     { $task = Task::find($id);
 
-        if (\Auth::user()->id === $task->user_id) {
+        if (\Auth::check()&&\Auth::user()->id === $task->user_id) {
             $task->delete();
         }
 
